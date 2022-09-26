@@ -1,4 +1,4 @@
-module github.com/planet5d/go-cedar
+module github.com/genesis3systems/go-cedar
 
 go 1.16
 

@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/planet5d/go-cedar/process"
-	"github.com/planet5d/go-cedar/testutils"
+	"github.com/genesis3systems/go-cedar/process"
+	"github.com/genesis3systems/go-cedar/testutils"
 )
 
 func makeItems() (item [5]*workItem) {

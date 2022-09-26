@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/planet5d/go-cedar/utils"
+	"github.com/genesis3systems/go-cedar/utils"
 )
 
 func TestWaitGroupChan(t *testing.T) {
