@@ -121,7 +121,7 @@ func (p *ctx) ContextLabel() string {
 }
 
 func printContextTree(ctx Context, out *strings.Builder, depth int) {
-	out.WriteString(fmt.Sprintf("%s* %s (%v)\n", strings.Repeat("    ", depth), ctx.ContextLabel(), ctx.ContextID()))
+	out.WriteString(fmt.Sprintf("%s%03d %s\n", strings.Repeat("    ", depth), ctx.ContextID(), ctx.ContextLabel()))
 
 	var subBuf [20]Context
 	children := ctx.GetChildren(subBuf[:0])
