@@ -7,8 +7,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/genesis3systems/go-cedar/process"
-	"github.com/genesis3systems/go-cedar/testutils"
+	"github.com/arcverse/go-cedar/process"
+	"github.com/arcverse/go-cedar/testutils"
 )
 
 func spawnN(p process.Context, numGoroutines int, delay time.Duration) {

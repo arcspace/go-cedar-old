@@ -1,7 +1,7 @@
 package process
 
 import (
-	"github.com/genesis3systems/go-cedar/utils"
+	"github.com/arcverse/go-cedar/utils"
 )
 
 type PeriodicTask struct {

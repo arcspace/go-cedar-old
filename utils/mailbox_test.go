@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/genesis3systems/go-cedar/utils"
+	"github.com/arcverse/go-cedar/utils"
 )
 
 func TestMailbox(t *testing.T) {

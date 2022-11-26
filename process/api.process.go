@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/genesis3systems/go-cedar/log"
+	"github.com/arcverse/go-cedar/log"
 )
 
 // NilContext is used to start Contexts with no parent Context.

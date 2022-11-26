@@ -14,7 +14,7 @@ import (
 
 	"github.com/rs/cors"
 
-	"github.com/genesis3systems/go-cedar/errors"
+	"github.com/arcverse/go-cedar/errors"
 )
 
 type HTTPClient struct {
