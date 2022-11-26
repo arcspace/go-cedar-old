@@ -2,8 +2,6 @@ package process
 
 import (
 	"context"
-	"io"
-	"strings"
 	"time"
 
 	"github.com/arcverse/go-cedar/log"
@@ -84,20 +82,4 @@ type Context interface {
 
 	// Signals when Close() has fully executed, no children remain, and OnClosed() has been completed.
 	Done() <-chan struct{}
-}
-
-// Writes pretty debug state info of a given verbosity level.
-// If out == nil, the text output is instead directed to this context's logger.Info()
-func PrintContextTree(ctx Context, out io.Writer, verboseLevel int32) {
-	buf := new(strings.Builder)
-
-	buf.WriteString("\n")
-	printContextTree(ctx, buf, 0)
-
-	outStr := buf.String()
-	if out != nil {
-		out.Write([]byte(outStr))
-	} else {
-		ctx.Info(verboseLevel, outStr)
-	}
 }
