@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/arcverse/go-cedar/log"
+	"github.com/arcspace/go-cedar/log"
 )
 
 // NilContext is used to start Contexts with no parent Context.

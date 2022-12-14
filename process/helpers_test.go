@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/arcverse/go-cedar/process"
-	"github.com/arcverse/go-cedar/testutils"
+	"github.com/arcspace/go-cedar/process"
+	"github.com/arcspace/go-cedar/testutils"
 )
 
 func makeItems() (item [5]*workItem) {

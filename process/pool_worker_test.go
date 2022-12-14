@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/arcverse/go-cedar/process"
+	"github.com/arcspace/go-cedar/process"
 )
 
 func TestPoolWorker(t *testing.T) {

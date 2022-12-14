@@ -9,7 +9,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/arcverse/go-cedar/log"
+	"github.com/arcspace/go-cedar/log"
 )
 
 // ctx implements Context

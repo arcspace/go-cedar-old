@@ -8,7 +8,7 @@ import (
 
 	"golang.org/x/sync/semaphore"
 
-	"github.com/arcverse/go-cedar/utils"
+	"github.com/arcspace/go-cedar/utils"
 )
 
 type Pool struct {

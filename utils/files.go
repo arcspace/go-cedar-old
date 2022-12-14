@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/arcverse/go-cedar/bufs"
-	"github.com/arcverse/go-cedar/errors"
+	"github.com/arcspace/go-cedar/bufs"
+	"github.com/arcspace/go-cedar/errors"
 )
 
 var (

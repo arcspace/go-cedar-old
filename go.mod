@@ -1,4 +1,4 @@
-module github.com/arcverse/go-cedar
+module github.com/arcspace/go-cedar
 
 go 1.18
 
