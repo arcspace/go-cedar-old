@@ -1,6 +1,8 @@
 package log
 
 import (
+	"bytes"
+	"flag"
 	"fmt"
 	"os"
 	"os/signal"
@@ -10,6 +12,11 @@ import (
 
 	"github.com/brynbellomy/klog"
 )
+
+// Formatter specifies how each log entry header should be formatted.=
+type Formatter interface {
+	FormatHeader(severity string, filename string, lineNum int, ioBuf *bytes.Buffer)
+}
 
 // Logger abstracts basic logging functions.
 type Logger interface {
@@ -33,6 +40,26 @@ type Logger interface {
 	Errorf(inFormat string, args ...interface{})
 	Errorw(inFormat string, fields Fields)
 	Fatalf(inFormat string, args ...interface{})
+}
+
+func InitFlags(flagset *flag.FlagSet) {
+	klog.InitFlags(flagset)
+}
+
+// Uses the stock log formatter with the given settings
+func UseStockFormatter(fileNameCharWidth int, useColor bool) {
+	UseFormatter(&klog.FmtConstWidth{
+		FileNameCharWidth: fileNameCharWidth,
+		UseColor:          useColor,
+	})
+}
+
+func UseFormatter(inFormatter Formatter) {
+	klog.SetFormatter(inFormatter)
+}
+
+func Flush() {
+	klog.Flush()
 }
 
 type logger struct {
@@ -144,9 +171,9 @@ func (l *logger) Successw(msg string, fields Fields) {
 // Arguments are handled like fmt.Print(); a newline is appended if missing.
 //
 // Verbose level conventions:
-//   0. Enabled during production and field deployment.  Use this for important high-level info.
-//   1. Enabled during testing and development. Use for high-level changes in state, mode, or connection.
-//   2. Enabled during low-level debugging and troubleshooting.
+//  0. Enabled during production and field deployment.  Use this for important high-level info.
+//  1. Enabled during testing and development. Use for high-level changes in state, mode, or connection.
+//  2. Enabled during low-level debugging and troubleshooting.
 func (l *logger) Info(inVerboseLevel int32, args ...interface{}) {
 	logIt := true
 	if inVerboseLevel > 0 {
