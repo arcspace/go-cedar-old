@@ -5,9 +5,9 @@ go 1.18
 require (
 	github.com/brynbellomy/klog v0.0.0-20200414031930-87fbf2e555ae
 	github.com/pkg/errors v0.9.1
-	github.com/rs/cors v1.8.2
-	github.com/stretchr/testify v1.8.1
-	golang.org/x/sync v0.1.0
+	github.com/rs/cors v1.9.0
+	github.com/stretchr/testify v1.8.2
+	golang.org/x/sync v0.2.0
 )
 
 require (
