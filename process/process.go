@@ -40,11 +40,12 @@ var (
 
 var gSpawnCounter = int64(0)
 
-func (p *ctx) Close() {
+func (p *ctx) Close() error {
 	first := atomic.CompareAndSwapInt32(&p.state, Running, Closing)
 	if first {
 		close(p.chClosing)
 	}
+	return nil
 }
 
 func (p *ctx) CloseWhenIdle(delay time.Duration) {

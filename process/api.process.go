@@ -65,11 +65,11 @@ type Context interface {
 	// Context implementations wishing to remain lightweight may opt to not retain a list of children (and just return the given slice as-is).
 	GetChildren(in []Context) []Context
 
-	// Async call that initiates process shutdown and causes all childen's Close() to be called.
+	// Async call that initiates process shutdown and causes all children's Close() to be called.
 	// Close can be called multiple times but calls after the first are in effect ignored.
 	// First, child processes get Close() in breath-first order.
 	// After all children are done closing, OnClosing(), then OnClosed() are executed.
-	Close()
+	Close() error
 
 	// Inserts a pending Close() on this Context once it is idle after the given delay.
 	// Subsequent calls will update the delay but the previously pending delay must run out first.
