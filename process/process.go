@@ -110,19 +110,19 @@ func (p *ctx) Value(key interface{}) interface{} {
 }
 
 func (p *ctx) TaskRef() interface{} {
-	return p.task.Ref
+	return p.task.TaskRef
 }
 
 func (p *ctx) ContextID() int64 {
 	return p.id
 }
 
-func (p *ctx) ContextLabel() string {
+func (p *ctx) Label() string {
 	return p.task.Label
 }
 
 func printContextTree(ctx Context, out *strings.Builder, depth int) {
-	out.WriteString(fmt.Sprintf("%s%03d %s\n", strings.Repeat("    ", depth), ctx.ContextID(), ctx.ContextLabel()))
+	out.WriteString(fmt.Sprintf("%s%03d %s\n", strings.Repeat("    ", depth), ctx.ContextID(), ctx.Label()))
 
 	var subBuf [20]Context
 	children := ctx.GetChildren(subBuf[:0])

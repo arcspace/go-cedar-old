@@ -24,9 +24,13 @@ func Go(parent Context, label string, fn func(ctx Context)) (Context, error) {
 
 // Task is an optional set of callbacks for a Context
 type Task struct {
-	Label     string
-	IdleClose time.Duration           // If > 0, CloseWhenIdle() is automatically called after the last remaining child is closed or after OnRun() completes (if set), whichever occurs later.
-	Ref       interface{}             // Offered to you to store anything and accessed via Context.TaskRef()
+
+	// If > 0, CloseWhenIdle() is automatically called after the last remaining child is closed or after OnRun() completes (if set) -- whichever occurs later.
+	// Note how this will not enter into effect unless OnRun is given or a child is started.
+	IdleClose time.Duration
+
+	TaskRef   any                     // Offered to you for open-ended use.
+	Label     string                  // Label is a log label and debugging
 	OnStart   func(ctx Context) error // Blocking fn called in StartChild(). If err, ctx.Close() is called and Go() returns the err and OnRun is never called.
 	OnRun     func(ctx Context)       // Async work body. If non-nil, ctx.Close() will be automatically called after OnRun() completes
 	OnClosing func()                  // Called after Close() is first called and immediately before children are signaled to close.
@@ -36,14 +40,14 @@ type Task struct {
 type Context interface {
 	log.Logger
 
-	// A process.Context can be used just like a context.Context.
+	// A process.Context is an extension of context.Context.
 	context.Context
 
-	// Returns Task.Ref passed to StartChild()
+	// Returns Task.Ref passed into StartChild()
 	TaskRef() interface{}
 
 	// The context's public label
-	ContextLabel() string
+	Label() string
 
 	// A guaranteed unique ID assigned after Start() is called.
 	ContextID() int64

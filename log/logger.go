@@ -348,5 +348,6 @@ func AwaitInterrupt() (
 		}
 	}()
 
+	klog.InfoDepth(1, "To stop: \x1b[1m^C\x1b[0m or \x1b[1mkill -s SIGINT %d\x1b[0m", os.Getpid())
 	return onFirst, onRepeated
 }
