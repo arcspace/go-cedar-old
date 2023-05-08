@@ -19,6 +19,7 @@ func PrintTreePeriodically(ctx Context, period time.Duration, verboseLevel int32
 		case <-ticker.C:
 			{
 				PrintContextTree(ctx, &buf, verboseLevel)
+				changed := false
 				R := buf.Len()
 				if R != len(text) {
 					if cap(text) < R {
@@ -26,23 +27,23 @@ func PrintTreePeriodically(ctx Context, period time.Duration, verboseLevel int32
 					} else {
 						text = text[:R]
 					}
+					changed = true
 				}
-				same := true
 				for pos := 0; pos < R; {
 					n, _ := buf.Read(block[:])
 					if n == 0 {
 						break
 					}
-					if same {
-						same = bytes.Equal(block[:n], text[pos:pos+n])
+					if !changed {
+						changed = !bytes.Equal(block[:n], text[pos:pos+n])
 					}
-					if !same {
+					if changed {
 						copy(text[pos:], block[:n])
 					}
 					pos += n
 				}
-				if !same {
-					ctx.Info(verboseLevel, string(text[:R]))
+				if changed {
+					ctx.Info(verboseLevel, string(text))
 				}
 				buf.Reset()
 			}
