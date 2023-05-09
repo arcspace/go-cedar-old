@@ -331,7 +331,7 @@ func AwaitInterrupt() (
 			// Prevent un-terminated ^c character in terminal
 			fmt.Println()
 
-			klog.WarningDepth(1, "\nReceived interrupt ", sig.String(), "\n")
+			klog.WarningDepth(1, "Received ", sig.String(), "\n")
 
 			if onFirst != nil {
 				firstTime = curTime
@@ -339,7 +339,7 @@ func AwaitInterrupt() (
 				onFirst = nil
 			} else if onRepeated != nil {
 				if curTime > firstTime+3 && count >= 3 {
-					klog.WarningDepth(1, "\nReceived repeated interrupts\n")
+					klog.WarningDepth(1, "Received repeated interrupts\n")
 					klog.Flush()
 					close(onRepeated)
 					onRepeated = nil
@@ -348,6 +348,6 @@ func AwaitInterrupt() (
 		}
 	}()
 
-	klog.InfoDepth(1, "To stop: \x1b[1m^C\x1b[0m or \x1b[1mkill -s SIGINT ", os.Getpid(), "\x1b[0m")
+	klog.InfoDepth(1, "To stop: \x1b[1m^C\x1b[0m  or  \x1b[1mkill -s SIGINT ", os.Getpid(), "\x1b[0m")
 	return onFirst, onRepeated
 }
